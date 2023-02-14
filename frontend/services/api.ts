@@ -1,5 +1,6 @@
 import { signOut } from "@/contexts/AuthContext";
 import axios, { AxiosError } from "axios";
+import { GetServerSidePropsContext } from "next";
 import { parseCookies, setCookie } from "nookies";
 import { AuthTokenError } from "./errors/AuthTokenError";
 
@@ -15,7 +16,7 @@ type ErrorResponseData = {
 let isRefreshing = false;
 let failedRequestsQueue: FailedRequestsQueueData[] = [];
 
-export function setupAPIClient(ctx = undefined) {
+export function setupAPIClient(ctx: GetServerSidePropsContext) {
   let cookies = parseCookies(ctx);
   
   
